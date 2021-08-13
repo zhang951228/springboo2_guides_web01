@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.Arrays;
@@ -20,10 +22,9 @@ public class Web01Application {
     public static void main(String[] args) {
         ConfigurableApplicationContext run = SpringApplication.run(Web01Application.class, args);
 
-        boolean student1 = run.containsBean("student");
-        System.out.println(student1);
-        boolean student2 = run.containsBean("student2");
-        System.out.println(student2);
+        System.out.println(run.containsBean("student"));
+        System.out.println(run.containsBean("student2"));
+        System.out.println(run.containsBean("redisConnectionFactory"));
         StudentServiceImpl studentService = (StudentServiceImpl) run.getBean("studentServiceImpl");
         //studentService.findStudent(1);
     }
@@ -33,7 +34,7 @@ public class Web01Application {
      * @param ctx
      * @return
      */
-    //@Bean
+    @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
 

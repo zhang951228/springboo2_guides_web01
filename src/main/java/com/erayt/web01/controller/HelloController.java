@@ -2,12 +2,16 @@ package com.erayt.web01.controller;
 
 import com.erayt.web01.domain.Response;
 import com.erayt.web01.domain.Student;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -16,6 +20,11 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 @RestController
 public class HelloController {
+
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @GetMapping("/hello")
     public String seHello(@RequestParam(value = "name1",defaultValue = "World") String name, String password){
@@ -56,7 +65,26 @@ public class HelloController {
         Response response = new Response();
         response.setResponse(students);
         return response;
+    }
 
+    /**
+     *  https://blog.csdn.net/lydms/article/details/105224210
+     * @return
+     */
+    @GetMapping("/redis01")
+    public String triggerRedis01(){
+        String msg = "Hello from Redis!"+ UUID.randomUUID().toString().substring(0,10);
+        stringRedisTemplate.convertAndSend("chat",msg);
+        redisTemplate.boundValueOps("key1").set(msg);
+        //redisTemplate.boundValueOps("key2").set(msg);
+        Object key1 = redisTemplate.boundValueOps("key1").get();
+        System.out.println("after set key1's values:"+key1);
+        redisTemplate.delete("key1");
+        key1 = redisTemplate.boundValueOps("key1").get();
+        System.out.println("after delete,key1's value:"+key1);
+        key1 = redisTemplate.boundValueOps("key2").get();
+        System.out.println("after delete,key2's value:"+key1);
+        return "trigger redis message Listener success。";
     }
 
 }

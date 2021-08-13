@@ -17,8 +17,8 @@
 		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
-        <!-- @Description:   secure @Author z151   @Date 2021/8/13 11:29  -->
-        <dependency>
+        <!-- @Description: 安全认证及LDAP服务开启。 @Author z151   @Date 2021/8/13 11:29  -->
+<!--        <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
@@ -34,6 +34,12 @@
                 <groupId>com.unboundid</groupId>
                 <artifactId>unboundid-ldapsdk</artifactId>
         </dependency>
+-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -49,6 +55,7 @@
 			<scope>test</scope>
 		</dependency>
 
+        <!-- @Description:   异步执行任务测试 @Author z151   @Date 2021/8/13 17:27  -->
         <dependency>
           <groupId>org.awaitility</groupId>
           <artifactId>awaitility</artifactId>

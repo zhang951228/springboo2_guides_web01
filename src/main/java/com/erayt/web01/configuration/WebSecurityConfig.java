@@ -1,5 +1,7 @@
 package com.erayt.web01.configuration;
 
+
+/**
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -7,10 +9,9 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-/**
- * @Auther: Z151
- * @Date: 2021/8/13 11:46
- */
+
+
+//打开该注释的话，会启动验证服务， ben  benspassword
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -36,4 +37,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .passwordEncoder(new BCryptPasswordEncoder())
             .passwordAttribute("userPassword");
     }
+}
+ */
+
+public class WebSecurityConfig{
+
 }
