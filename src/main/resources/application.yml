@@ -1,0 +1,16 @@
+server:
+  port: 8081
+  servlet:
+    session:
+      timeout: PT2S
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    username: XREPORT
+    password: xreport
+  ldap:
+    embedded:
+      ldif: 'classpath:test-server.ldif'
+      base-dn: dc=springframework,dc=org
+      port: 8389
