@@ -1,14 +1,21 @@
 package com.erayt.web01.controller;
 
+import com.erayt.web01.domain.PersonForm;
 import com.erayt.web01.domain.Response;
 import com.erayt.web01.domain.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.validation.Valid;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
@@ -18,8 +25,9 @@ import java.util.concurrent.atomic.AtomicLong;
  * @Auther: Z151
  * @Date: 2021/8/11 15:14
  */
-@RestController
-public class HelloController {
+//@RestController
+@Controller
+public class HelloController implements WebMvcConfigurer {
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
@@ -32,9 +40,31 @@ public class HelloController {
         System.out.println(logStr);
         return  logStr;
     }
+
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/results").setViewName("results");
+            /*等同于如下代码
+            @GetMapping("/results")
+            public String postResult(){
+                return "results";
+            }*/
+    }
+
     @GetMapping("/")
-    public String index() {
-        return "Greetings from Spring Boot!";
+    public String showForm(PersonForm personForm){
+        System.out.println(personForm);
+        return "form1";
+    }
+
+    @PostMapping("/")
+    public String checkPersonInfo(@Valid PersonForm personForm, BindingResult bindingResult) {
+        System.out.println(personForm);
+        if (bindingResult.hasErrors()) {
+            return "form1";
+        }
+        return "redirect:/results";
     }
 
     private static final String template = "Hello, %s!";
