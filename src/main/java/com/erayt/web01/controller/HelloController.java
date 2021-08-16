@@ -1,11 +1,13 @@
 package com.erayt.web01.controller;
 
+import com.erayt.web01.domain.Email;
 import com.erayt.web01.domain.PersonForm;
 import com.erayt.web01.domain.Response;
 import com.erayt.web01.domain.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +35,8 @@ public class HelloController implements WebMvcConfigurer {
     private StringRedisTemplate stringRedisTemplate;
     @Autowired
     private RedisTemplate redisTemplate;
+    @Autowired
+    private JmsTemplate jmsTemplate;
 
     @GetMapping("/hello")
     public String seHello(@RequestParam(value = "name1",defaultValue = "World") String name, String password){
@@ -55,6 +59,7 @@ public class HelloController implements WebMvcConfigurer {
     @GetMapping("/")
     public String showForm(PersonForm personForm){
         System.out.println(personForm);
+        jmsTemplate.convertAndSend("myqueue",new Email("to","body","title","additional"));
         return "form1";
     }
 

@@ -49,6 +49,8 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
+        
+        <!-- @Description:   https://spring.io/guides/gs/messaging-jms/ @Author z151   @Date 2021/8/16 23:01  -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-activemq</artifactId>

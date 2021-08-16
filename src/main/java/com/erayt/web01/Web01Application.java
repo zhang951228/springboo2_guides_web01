@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.jms.annotation.EnableJms;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.Arrays;
@@ -17,6 +18,7 @@ import java.util.Arrays;
 @EnableConfigurationProperties(StorageProperties.class)
 @EnableScheduling
 @SpringBootApplication
+@EnableJms
 public class Web01Application {
 
     public static void main(String[] args) {
