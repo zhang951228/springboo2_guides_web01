@@ -35,6 +35,11 @@
                 <artifactId>unboundid-ldapsdk</artifactId>
         </dependency>
 -->
+        <!-- @Description:   https://spring.io/guides/gs/actuator-service/  健康检测  @Author z151   @Date 2021/8/16 22:27  -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
         <dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
@@ -44,7 +49,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-activemq</artifactId>
+        </dependency>
         <!-- @Description:   https://spring.io/guides/gs/validating-form-input/ @Author z151   @Date 2021/8/16 17:45  -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -77,7 +85,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.26</version>
+        </dependency>
+
+<!--        <dependency>
             <groupId>com.oracle.database.jdbc</groupId>
             <artifactId>ojdbc8</artifactId>
             <scope>runtime</scope>
@@ -86,7 +101,7 @@
             <groupId>com.oracle.database.nls</groupId>
             <artifactId>orai18n</artifactId>
             <version>21.1.0.0</version>
-        </dependency>
+        </dependency>-->
 	</dependencies>
 
 	<build>
