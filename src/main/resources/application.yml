@@ -16,3 +16,5 @@ spring:
       ldif: 'classpath:test-server.ldif'
       base-dn: dc=springframework,dc=org
       port: 8389
+  activemq:
+    broker-url: tcp://106.12.95.66:61616
