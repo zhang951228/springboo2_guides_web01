@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class Receiver {
-    @JmsListener(destination = "myqueue",containerFactory = "myFactory")
+    @JmsListener(destination = "myqueue",containerFactory = "myFactory01")
     public void receiverEmail(Email email){
-        System.out.println(email);
+        System.out.println(" this is Receiver.receiverEmail method :"+email);
     }
 }
