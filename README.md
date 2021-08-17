@@ -1,4 +1,4 @@
-##顺序联系springboot2的guides 
+##顺序练习springboot2的guides 
 
 ###地址：https://spring.io/guides
 
@@ -17,5 +17,5 @@ docker run -d --name myactivemq -p 61616:61616 -p 8161:8161 webcenter/activemq
 
 docker run -itd --name my-redis -p 6379:6379 redis
 
-docker run -itd --name mysql01 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=pbszcjdgb mysql
+docker run -itd --name mysql01 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=p...b(全字母) mysql
 

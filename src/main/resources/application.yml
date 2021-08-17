@@ -4,15 +4,29 @@ server:
     session:
       timeout: PT2S
 spring:
+#redis
   redis:
     host: 106.12.95.66
+
+#mysql
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://106.12.95.66:3306/mysql?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
+    url: jdbc:mysql://106.12.95.66:3306/item01?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
     username: root
     password: pbszcjdgb
+    initialization-mode: always
+    #connection-init-sql: always
+
+  #ldap 目录服务
   ldap:
     embedded:
       ldif: 'classpath:test-server.ldif'
       base-dn: dc=springframework,dc=org
       port: 8389
+
+#jms activemq
+  jms:
+    #true:topic  false:queue  default:false
+    pub-sub-domain: true
+  activemq:
+    broker-url: tcp://106.12.95.66:61616
