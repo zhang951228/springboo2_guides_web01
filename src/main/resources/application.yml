@@ -2,15 +2,18 @@ server:
   port: 8081
   servlet:
     session:
-      timeout: PT2S
+      timeout: 1s
 spring:
-  redis:
-    host: 106.12.95.66
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://106.12.95.66:3306/mysql?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
+    url: jdbc:mysql://106.12.95.66:3306/item01?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
     username: root
     password: pbszcjdgb
+
+  redis:
+    host: 106.12.95.66
+
+#目录文件
   ldap:
     embedded:
       ldif: 'classpath:test-server.ldif'
@@ -18,3 +21,9 @@ spring:
       port: 8389
   activemq:
     broker-url: tcp://106.12.95.66:61616
+  batch:
+#始终创建表
+    initialize-schema: always
+    job:
+      #启动时不启动job
+      enabled: false

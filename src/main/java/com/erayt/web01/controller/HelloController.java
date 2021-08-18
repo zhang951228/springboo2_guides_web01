@@ -4,19 +4,23 @@ import com.erayt.web01.domain.Email;
 import com.erayt.web01.domain.PersonForm;
 import com.erayt.web01.domain.Response;
 import com.erayt.web01.domain.Student;
+import org.springframework.batch.core.*;
+import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
+import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
+import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.LinkedList;
 import java.util.List;
@@ -38,7 +42,7 @@ public class HelloController implements WebMvcConfigurer {
     @Autowired
     private JmsTemplate jmsTemplate;
 
-    @GetMapping("/hello")
+    @GetMapping("/hello1")
     public String seHello(@RequestParam(value = "name1",defaultValue = "World") String name, String password){
         String logStr = String.format("调用seHello, 传入参数  %s!   %s!",name,password);
         System.out.println(logStr);
@@ -56,11 +60,40 @@ public class HelloController implements WebMvcConfigurer {
             }*/
     }
 
-    @GetMapping("/")
+    @GetMapping("/form1")
     public String showForm(PersonForm personForm){
         System.out.println(personForm);
         jmsTemplate.convertAndSend("myqueue",new Email("to","body","title","additional"));
         return "form1";
+    }
+
+    @GetMapping("/home")
+    public String home(){
+        return "hello";
+    }
+
+    @GetMapping("/hello")
+    public String hello(){
+        return "hello";
+    }
+
+    @GetMapping("/")
+    public String hello2(){
+        return "hello";
+    }
+
+    @GetMapping("/admin")
+    public String hello3(){
+        return "/admin/admin";
+    }
+   @GetMapping("/welcome")
+    public String hello4(){
+        return "/welcome";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
     }
 
     @PostMapping("/")
@@ -121,5 +154,27 @@ public class HelloController implements WebMvcConfigurer {
         System.out.println("after delete,key2's value:"+key1);
         return "trigger redis message Listener success。";
     }
+
+    @Autowired
+    private JobLauncher jobLauncher;
+    @Resource(name="importUserJob1")
+    private Job job;
+
+    //改为请求方式调用springbatch
+    @GetMapping("/runJob")
+    @ResponseBody
+    public String runJob(){
+        JobParameters title = new JobParametersBuilder().addLong("title", System.currentTimeMillis()).toJobParameters();
+        try {
+            JobExecution run = jobLauncher.run(job, title);
+            //run.getStatus();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "成功调用";
+    }
+
+
+
 
 }

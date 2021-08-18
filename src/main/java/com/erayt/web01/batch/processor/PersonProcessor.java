@@ -2,6 +2,7 @@ package com.erayt.web01.batch.processor;
 
 import com.erayt.web01.domain.Person;
 import org.springframework.batch.item.ItemProcessor;
+import org.springframework.stereotype.Component;
 
 import java.util.Locale;
 
@@ -9,6 +10,7 @@ import java.util.Locale;
  * @Auther: Z151
  * @Date: 2021/8/17 21:15
  */
+//@Component
 public class PersonProcessor implements ItemProcessor<Person, Person> {
 
     @Override

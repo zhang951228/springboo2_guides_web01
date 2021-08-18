@@ -22,6 +22,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-batch</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>org.springframework.batch</groupId>
+            <artifactId>spring-batch-core</artifactId>
+        </dependency>
         <!-- @Description: 安全认证及LDAP服务开启。 @Author z151   @Date 2021/8/13 11:29  -->
 <!--        <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -118,6 +122,15 @@
             <artifactId>orai18n</artifactId>
             <version>21.1.0.0</version>
         </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>org.springframework.security</groupId>
+          <artifactId>spring-security-test</artifactId>
+          <scope>test</scope>
+        </dependency>
 	</dependencies>
 
 	<build>

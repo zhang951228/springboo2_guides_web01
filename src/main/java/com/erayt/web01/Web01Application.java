@@ -23,11 +23,14 @@ public class Web01Application {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext run = SpringApplication.run(Web01Application.class, args);
+        //SpringApplication.exit(run);
+
+/*        ConfigurableApplicationContext run = SpringApplication.run(Web01Application.class, args);
 
         System.out.println(run.containsBean("student"));
         System.out.println(run.containsBean("student2"));
         System.out.println(run.containsBean("redisConnectionFactory"));
-        StudentServiceImpl studentService = (StudentServiceImpl) run.getBean("studentServiceImpl");
+        StudentServiceImpl studentService = (StudentServiceImpl) run.getBean("studentServiceImpl");*/
         //studentService.findStudent(1);
     }
 
@@ -42,11 +45,11 @@ public class Web01Application {
 
             System.out.println("Let's inspect the beans provided by Spring Boot:");
 
-            String[] beanNames = ctx.getBeanDefinitionNames();
+/*            String[] beanNames = ctx.getBeanDefinitionNames();
             Arrays.sort(beanNames);
             for (String beanName : beanNames) {
                 System.out.println(beanName);
-            }
+            }*/
         };
     }
 
