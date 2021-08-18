@@ -1,9 +1,7 @@
 package com.erayt.web01.controller;
 
-import com.erayt.web01.domain.Email;
-import com.erayt.web01.domain.PersonForm;
-import com.erayt.web01.domain.Response;
-import com.erayt.web01.domain.Student;
+import com.erayt.web01.domain.*;
+import com.erayt.web01.repository.PersonRepository;
 import org.springframework.batch.core.*;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
@@ -13,13 +11,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.hateoas.Link;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+import static java.util.Arrays.asList;
+import static java.util.stream.StreamSupport.stream;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.LinkedList;
@@ -107,6 +111,7 @@ public class HelloController implements WebMvcConfigurer {
 
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
+    @ResponseBody
     @GetMapping("/stu")
     public List<Student> seeStudent(@RequestParam(value = "name",required = false,defaultValue = "") String name,
                                     @RequestParam(value = "age",required = false,defaultValue = "0")long age,
@@ -119,6 +124,31 @@ public class HelloController implements WebMvcConfigurer {
         students.add(student);
         return students;
     }
+
+    @ResponseBody
+    @RequestMapping("/greeting")
+    //@GetMapping("/greeting")
+    public Student01 testhateoas(@RequestParam(value = "name",required = false,defaultValue = "name1") String name,
+                                        @RequestParam(value = "age",required = false,defaultValue = "0")long age,
+                                        @RequestParam(value = "clz",required = false,defaultValue = "clz1")String clz){
+        Student01 student01 = new Student01(age,name,clz);
+        student01.add(linkTo(methodOn(HelloController.class).testhateoas(name,age,clz)).withSelfRel());
+        //return new ResponseEntity<>(student01, HttpStatus.OK);
+        return student01;
+    }
+    @ResponseBody
+    @RequestMapping("/greeting2")
+    //@GetMapping("/greeting")
+    public Student01 testhateoas2(@RequestParam(value = "name",required = false,defaultValue = "name1") String name,
+                                        @RequestParam(value = "age",required = false,defaultValue = "0")long age,
+                                        @RequestParam(value = "clz",required = false,defaultValue = "clz1")String clz){
+        Student01 student01 = new Student01(age,name,clz);
+        student01.add(new Link("啊哈哈"));
+        //return new ResponseEntity<>(student01, HttpStatus.OK);
+        return student01;
+    }
+
+    @ResponseBody
     @GetMapping("/stu2")
     public Response<List<Student>> response01(@RequestParam(value = "name",required = false,defaultValue = "") String name,
                                               @RequestParam(value = "age",required = false,defaultValue = "0")long age,
@@ -174,6 +204,49 @@ public class HelloController implements WebMvcConfigurer {
         return "成功调用";
     }
 
+
+    @Autowired
+    private PersonRepository personRepository;
+
+    @ResponseBody
+    @GetMapping("/testGemFile01")
+    public String testGemFile01(){
+        Person02 alice = new Person02("Adult Alice", 40);
+        Person02 bob = new Person02("Baby Bob", 1);
+        Person02 carol = new Person02("Teen Carol", 13);
+
+        System.out.println("Before accessing data in Apache Geode...");
+
+        asList(alice, bob, carol).forEach(person -> System.out.println("\t" + person));
+
+        System.out.println("Saving Alice, Bob and Carol to Pivotal GemFire...");
+
+        personRepository.save(alice);
+        personRepository.save(bob);
+        personRepository.save(carol);
+
+        System.out.println("Lookup each person by name...");
+
+        asList(alice.getName(), bob.getName(), carol.getName())
+            .forEach(name -> System.out.println("\t" + personRepository.findByName(name)));
+
+        System.out.println("Query adults (over 18):");
+
+        stream(personRepository.findByAgeGreaterThan(18).spliterator(), false)
+            .forEach(person -> System.out.println("\t" + person));
+
+        System.out.println("Query babies (less than 5):");
+
+        stream(personRepository.findByAgeLessThan(5).spliterator(), false)
+            .forEach(person -> System.out.println("\t" + person));
+
+        System.out.println("Query teens (between 12 and 20):");
+
+        stream(personRepository.findByAgeGreaterThanAndAgeLessThan(12, 20).spliterator(), false)
+            .forEach(person -> System.out.println("\t" + person));
+
+        return "success";
+    }
 
 
 

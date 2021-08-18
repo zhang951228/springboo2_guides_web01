@@ -1,17 +1,25 @@
 package com.erayt.web01.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.hateoas.RepresentationModel;
 
 /**
  * @Auther: Z151
  * @Date: 2021/8/12 14:27
  */
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class Student01 {
+public class Student01 extends RepresentationModel<Student01> {
     private long id;
     private String name;
     private String clz;
+
+    @JsonCreator
+    public Student01(@JsonProperty("id")long id, @JsonProperty("name")String name, @JsonProperty("clz")String clz) {
+        this.id = id;
+        this.name = name;
+        this.clz = clz;
+    }
 
     public long getId() {
         return id;
