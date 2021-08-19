@@ -14,6 +14,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.gemfire.config.annotation.ClientCacheApplication;
 import org.springframework.data.gemfire.config.annotation.EnableEntityDefinedRegions;
 import org.springframework.data.gemfire.repository.config.EnableGemfireRepositories;
@@ -22,6 +23,8 @@ import org.springframework.jms.annotation.EnableJms;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import static java.util.Arrays.asList;
 import static java.util.stream.StreamSupport.stream;
+
+import java.io.IOException;
 import java.util.Arrays;
 
 @EnableConfigurationProperties(StorageProperties.class)
@@ -34,10 +37,13 @@ import java.util.Arrays;
     clientRegionShortcut = ClientRegionShortcut.LOCAL
 )
 @EnableGemfireRepositories
+//@ImportResource("/integration/integration.xml")
 public class Web01Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ConfigurableApplicationContext run = SpringApplication.run(Web01Application.class, args);
+
+
         //SpringApplication.exit(run);
 
 /*        ConfigurableApplicationContext run = SpringApplication.run(Web01Application.class, args);

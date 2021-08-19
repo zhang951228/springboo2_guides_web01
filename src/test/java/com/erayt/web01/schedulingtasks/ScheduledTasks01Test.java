@@ -12,10 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
  * @Auther: Z151
  * @Date: 2021/8/12 16:05
  */
-@SpringBootTest
+//@SpringBootTest
 class ScheduledTasks01Test {
 
-    @Test
+    //@Test
     public void test01(){
         ScheduledTasks01 scheduledTasks01 = new ScheduledTasks01();
 

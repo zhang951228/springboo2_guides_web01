@@ -13,11 +13,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @Auther: Z151
  * @Date: 2021/8/11 17:22
  */
-@SpringBootTest
-@AutoConfigureMockMvc
+//@SpringBootTest
+//@AutoConfigureMockMvc
 class HelloControllerTest {
 
-    @Autowired
+    //@Autowired
     private MockMvc mvc;
 
 
