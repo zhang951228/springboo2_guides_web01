@@ -6,6 +6,7 @@ import com.erayt.web01.repository.PersonRepository;
 import com.erayt.web01.service.impl.StudentServiceImpl;
 import com.erayt.web01.service.storage.StorageProperties;
 import org.apache.geode.cache.client.ClientRegionShortcut;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -38,6 +39,7 @@ import java.util.Arrays;
 )
 @EnableGemfireRepositories
 //@ImportResource("/integration/integration.xml")
+//@MapperScan
 public class Web01Application {
 
     public static void main(String[] args) throws IOException {
@@ -66,11 +68,11 @@ public class Web01Application {
 
             System.out.println("Let's inspect the beans provided by Spring Boot:");
 
-/*            String[] beanNames = ctx.getBeanDefinitionNames();
+            String[] beanNames = ctx.getBeanDefinitionNames();
             Arrays.sort(beanNames);
             for (String beanName : beanNames) {
                 System.out.println(beanName);
-            }*/
+            }
         };
     }
 

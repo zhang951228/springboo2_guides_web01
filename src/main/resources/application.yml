@@ -27,3 +27,6 @@ spring:
     job:
       #启动时不启动job
       enabled: false
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
