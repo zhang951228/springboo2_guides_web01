@@ -1,5 +1,6 @@
 package com.erayt.web01.repository;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.erayt.web01.domain.User;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -9,9 +10,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 
 @Mapper
-public interface UserMapper {
-
-    User selectByAccount(String account);
-
-    User getUserByUserName(String name);
+public interface UserMapper extends BaseMapper<User> {
+    User getUserByUserName(String userName);
 }

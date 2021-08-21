@@ -1,8 +1,13 @@
 package com.erayt.web01.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.erayt.web01.domain.User;
+import com.erayt.web01.repository.UserMapper;
 import com.erayt.web01.service.iface.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @Auther: Z151
@@ -10,10 +15,17 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper,User>  implements UserService{
 
+    @Autowired
+    private UserMapper userMapper;
 
-    public User getUserByUserName(String account){
-        return new User();
+    public User getUserByUserName(String userName){
+        return userMapper.getUserByUserName(userName);
+    }
+
+    @Override
+    public List<User> selectList(){
+        return userMapper.selectList(null);
     }
 }

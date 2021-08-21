@@ -39,7 +39,8 @@ import java.util.Arrays;
 )
 @EnableGemfireRepositories
 //@ImportResource("/integration/integration.xml")
-//@MapperScan
+//@MapperScan("com.erayt.web01.repository")
+// 如果想要每个接口都要变成实现类，那么需要在每个接口类上加上@Mapper注解，比较麻烦，解决这个问题用@MapperScan
 public class Web01Application {
 
     public static void main(String[] args) throws IOException {
