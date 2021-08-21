@@ -27,5 +27,11 @@ spring:
     job:
       #启动时不启动job
       enabled: false
-mybatis:
+
+#mybatis:
+#  mapper-locations: classpath:/mapper/*.xml
+mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+

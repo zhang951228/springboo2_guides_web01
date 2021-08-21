@@ -1,0 +1,77 @@
+server:
+  port: 8081
+  servlet:
+    session:
+      timeout: 1s
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://106.12.95.66:3306/item01?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
+    username: root
+    password: pbszcjdgb
+
+  redis:
+    host: 106.12.95.66
+
+  #目录文件
+  ldap:
+    embedded:
+      ldif: 'classpath:test-server.ldif'
+      base-dn: dc=springframework,dc=org
+      port: 8389
+  activemq:
+    broker-url: tcp://106.12.95.66:61616
+  batch:
+    #始终创建表
+    initialize-schema: always
+    job:
+      #启动时不启动job
+      enabled: false
+#shardingsphere 配置
+#读写分离
+  shardingsphere:
+    datasource:
+      names: master,slave01
+      default:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://106.12.95.66:3306/item01?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
+        username: root
+        password: pbszcjdgb
+        initialSize: 5
+        minIdle: 5
+        maxActive: 20
+        maxWait: 60000
+      master:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://106.12.95.66:3306/item01?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
+        username: root
+        password: pbszcjdgb
+        initialSize: 5
+        minIdle: 5
+        maxActive: 20
+        maxWait: 60000
+      slave01:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://106.12.95.66:3307/item01?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
+        username: root
+        password: slave
+        initialSize: 5
+        minIdle: 5
+        maxActive: 20
+        maxWait: 60000
+    props:
+      sql:
+        show: true
+
+
+
+#mybatis:
+#  mapper-locations: classpath:/mapper/*.xml
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
