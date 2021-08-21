@@ -4,12 +4,56 @@ server:
     session:
       timeout: 1s
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://106.12.95.66:3306/item01?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
-    username: root
-    password: pbszcjdgb
-
+  shardingsphere:
+    datasource:
+      names: master, slave0, slave1, slave2
+#基础链接
+      common:
+        type: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://106.12.95.66:3306/item01?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
+        username: root
+        password: pbszcjdgb
+#主 从 库配置
+      master:
+        type: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://106.12.95.66:3306/item01?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
+        username: root
+        password: pbszcjdgb
+      slave0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://106.12.95.66:3307/item01?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
+        username: root
+        password: slave
+      slave1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://106.12.95.66:3307/item02?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
+        username: root
+        password: slave
+      slave2:
+        type: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://106.12.95.66:3307/item03?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
+        username: root
+        password: slave
+    rules:
+      replica-query:
+        dataSources:
+          ms:
+#主数据源配置
+            primaryDataSourceName: master
+#从数据源配置
+            replicaDataSourceNames: slave0, slave1, slave2
+#负载均衡算法名称
+            loadBalancerName: roundrobin
+        loadBalancers:
+          roundrobin:
+            type: ROUND_ROBIN
+            props:
+              type: ROUND_ROBIN
   redis:
     host: 106.12.95.66
 
@@ -21,12 +65,12 @@ spring:
       port: 8389
   activemq:
     broker-url: tcp://106.12.95.66:61616
-  batch:
+  #batch:
     #始终创建表
-    initialize-schema: always
-    job:
+   # initialize-schema: always
+   # job:
       #启动时不启动job
-      enabled: false
+   #   enabled: false
 
 #mybatis:
 #  mapper-locations: classpath:/mapper/*.xml
@@ -34,4 +78,3 @@ mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-

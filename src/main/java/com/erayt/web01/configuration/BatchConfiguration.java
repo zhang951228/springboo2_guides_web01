@@ -26,8 +26,8 @@ import javax.sql.DataSource;
  * @Auther: Z151
  * @Date: 2021/8/17 21:24
  */
-@Configuration
-@EnableBatchProcessing
+//@Configuration
+//@EnableBatchProcessing
 public class BatchConfiguration {
     @Autowired
     public JobBuilderFactory jobBuilderFactory;
@@ -93,7 +93,7 @@ public class BatchConfiguration {
 
     }*/
 
-    @Bean
+ /*   @Bean
     public Step step1(JdbcBatchItemWriter<Person> writer) {
         return stepBuilderFactory.get("step1")
             .<Person, Person> chunk(10)
@@ -121,5 +121,5 @@ public class BatchConfiguration {
             .processor(processor())
             .writer(writer)
             .build();
-    }
+    }*/
 }

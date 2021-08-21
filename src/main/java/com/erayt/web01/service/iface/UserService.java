@@ -13,4 +13,8 @@ public interface UserService extends IService<User> {
     User getUserByUserName(String account);
 
     List<User> selectList ();
+
+    List<User> findAll();
+
+    Integer insert(User user);
 }

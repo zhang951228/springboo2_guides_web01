@@ -185,9 +185,9 @@ public class HelloController implements WebMvcConfigurer {
         return "trigger redis message Listener success。";
     }
 
-    @Autowired
+    //@Autowired
     private JobLauncher jobLauncher;
-    @Resource(name="importUserJob1")
+    //@Resource(name="importUserJob1")
     private Job job;
 
     //改为请求方式调用springbatch

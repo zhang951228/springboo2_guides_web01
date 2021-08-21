@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Wrapper;
@@ -30,4 +31,21 @@ public class UserController {
         log.info("调用selectList ");
         return users;
     }
+     @GetMapping("/findAll")
+    public List<User> findAll(){
+        List<User> users = userService.selectList();
+        log.info("调用 findAll ");
+        return users;
+    }
+
+    @GetMapping("/insert")
+    public Integer insertUser(@RequestParam(value = "name",defaultValue = "啊啊啊") String name){
+        User user = new User();
+        user.setUserName(name);
+        user.setRule("RULE");
+        user.setPassword("1234545");
+        Integer insert = userService.insert(user);
+        return insert;
+    }
+
 }

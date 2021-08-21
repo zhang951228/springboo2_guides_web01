@@ -86,7 +86,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
+            <exclusions>
+                <exclusion>
+                    <artifactId>objenesis</artifactId>
+                    <groupId>org.objenesis</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
         <!-- @Description:   异步执行任务测试 @Author z151   @Date 2021/8/13 17:27  -->
         <dependency>
@@ -139,11 +145,31 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-geode</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-beanutils</artifactId>
+                    <groupId>commons-beanutils</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-io</artifactId>
+                    <groupId>commons-io</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.shell</groupId>
             <artifactId>spring-shell</artifactId>
             <version>1.2.0.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>guava</artifactId>
+                    <groupId>com.google.guava</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -162,17 +188,23 @@
 		<dependency>
 			<groupId>org.springframework.integration</groupId>
 			<artifactId>spring-integration-file</artifactId>
-		</dependency>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-io</artifactId>
+                    <groupId>commons-io</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.4.3.2</version>
         </dependency>
-<!--        <dependency>
+        <dependency>
             <groupId>org.apache.shardingsphere</groupId>
             <artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>
-            <version>5.0.0-beta</version>
-        </dependency>-->
+            <version>5.0.0-alpha</version>
+        </dependency>
         <dependency>
           <groupId>org.springframework.security</groupId>
           <artifactId>spring-security-test</artifactId>
