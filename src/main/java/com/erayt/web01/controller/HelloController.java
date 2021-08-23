@@ -1,6 +1,7 @@
 package com.erayt.web01.controller;
 
 import com.erayt.web01.domain.*;
+import com.erayt.web01.repository.CustomerRepository;
 import com.erayt.web01.repository.PersonRepository;
 import org.springframework.batch.core.*;
 import org.springframework.batch.core.launch.JobLauncher;
@@ -246,6 +247,40 @@ public class HelloController implements WebMvcConfigurer {
             .forEach(person -> System.out.println("\t" + person));
 
         return "success";
+    }
+
+    @Autowired
+    private CustomerRepository repository;
+
+    @ResponseBody
+    @GetMapping("/mongo/01")
+    public String mongoDbTest01(){
+        repository.deleteAll();
+
+        // save a couple of customers
+        repository.save(new Customer("Alice", "Smith"));
+        repository.save(new Customer("Bob", "Smith"));
+
+        // fetch all customers
+        System.out.println("Customers found with findAll():");
+        System.out.println("-------------------------------");
+        for (Customer customer : repository.findAll()) {
+            System.out.println(customer);
+        }
+        System.out.println();
+
+        // fetch an individual customer
+        System.out.println("Customer found with findByFirstName('Alice'):");
+        System.out.println("--------------------------------");
+        System.out.println(repository.findByFirstName("Alice"));
+
+        System.out.println("Customers found with findByLastName('Smith'):");
+        System.out.println("--------------------------------");
+        for (Customer customer : repository.findByLastName("Smith")) {
+            System.out.println(customer);
+        }
+
+        return "MONGODBSUCCESS";
     }
 
 

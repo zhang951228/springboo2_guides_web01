@@ -20,3 +20,5 @@ docker run -itd --name my-redis -p 6379:6379 redis
 docker run -itd --name mysql01 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=p...b(全字母) mysql
 
 docker run -itd --name mysqlslave02 -p 3307:3306 -e MYSQL_ROOT_PASSWORD=slave mysql
+
+docker run --name  my-mongo  -p 27017:27017  -d mongo
