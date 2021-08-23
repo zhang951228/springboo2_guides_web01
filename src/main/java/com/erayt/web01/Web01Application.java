@@ -12,10 +12,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.data.gemfire.cache.config.EnableGemfireCaching;
 import org.springframework.data.gemfire.config.annotation.ClientCacheApplication;
 import org.springframework.data.gemfire.config.annotation.EnableEntityDefinedRegions;
 import org.springframework.data.gemfire.repository.config.EnableGemfireRepositories;
@@ -32,7 +34,10 @@ import java.util.Arrays;
 @EnableScheduling
 @SpringBootApplication
 @EnableJms
-@ClientCacheApplication(name = "AccessingDataGemFireApplication")
+//@ClientCacheApplication(name = "AccessingDataGemFireApplication")
+@ClientCacheApplication(name = "Z151")
+//@EnableGemfireCaching
+@EnableCaching
 @EnableEntityDefinedRegions(
     basePackageClasses = Person02.class,
     clientRegionShortcut = ClientRegionShortcut.LOCAL

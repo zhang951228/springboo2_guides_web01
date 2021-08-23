@@ -6,6 +6,8 @@ import com.erayt.web01.domain.User;
 import com.erayt.web01.repository.UserMapper;
 import com.erayt.web01.service.iface.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,10 +23,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,User>  implements Us
     @Autowired
     private UserMapper userMapper;
 
+    @Cacheable(value = "Quotes", key = "#userName" , unless = "#result == null")
     public User getUserByUserName(String userName){
         return userMapper.getUserByUserName(userName);
     }
 
+    @Cacheable(value = "zds:test01")
     @Override
     public List<User> selectList(){
         return userMapper.selectList(null);

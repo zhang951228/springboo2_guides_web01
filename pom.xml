@@ -54,10 +54,10 @@
 			<artifactId>commons-lang</artifactId>
 			<version>2.4</version>
 		</dependency>
-		<dependency>
+<!--		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
-		</dependency>
+		</dependency>-->
         
         <!-- @Description:   https://spring.io/guides/gs/messaging-jms/ @Author z151   @Date 2021/8/16 23:01  -->
         <dependency>
@@ -205,6 +205,16 @@
             <artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>
             <version>5.0.0-alpha</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.cache/cache-api -->
+        <dependency>
+            <groupId>javax.cache</groupId>
+            <artifactId>cache-api</artifactId>
+        </dependency>
+
+        <dependency>
+           <groupId>com.fasterxml.jackson.core</groupId>
+           <artifactId>jackson-databind</artifactId>
+       </dependency>
         <dependency>
           <groupId>org.springframework.security</groupId>
           <artifactId>spring-security-test</artifactId>

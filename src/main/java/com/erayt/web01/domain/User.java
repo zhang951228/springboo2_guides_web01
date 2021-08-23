@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -17,7 +18,10 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode
 @TableName("td_user")
-public class User {
+public class User implements Serializable {
+
+    private static final Long  serialVersionUID = 23L;
+
     private Integer sequence;
     @Id
     private String userName;
