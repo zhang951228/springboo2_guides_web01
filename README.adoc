@@ -22,3 +22,8 @@ docker run -itd --name mysql01 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=p...b(全字�
 docker run -itd --name mysqlslave02 -p 3307:3306 -e MYSQL_ROOT_PASSWORD=slave mysql
 
 docker run --name  my-mongo  -p 27017:27017  -d mongo
+
+待解决项：
+activeMQ 集成 webSocket
+mysql 主备
+token 与jquery 与 前后端分离/跨域。

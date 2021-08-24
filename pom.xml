@@ -250,6 +250,20 @@
           <artifactId>jquery</artifactId>
           <version>3.1.1-1</version>
         </dependency>
+        <!-- @Description:   https://spring.io/guides/gs/accessing-data-rest/ @Author z151   @Date 2021/8/24 16:09  -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-rest</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
         <dependency>
           <groupId>org.springframework.security</groupId>
           <artifactId>spring-security-test</artifactId>

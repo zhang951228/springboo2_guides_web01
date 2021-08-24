@@ -133,6 +133,7 @@ public class HelloController implements WebMvcConfigurer {
         return students;
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @ResponseBody
     @RequestMapping("/greeting")
     //@GetMapping("/greeting")
@@ -140,10 +141,27 @@ public class HelloController implements WebMvcConfigurer {
                                         @RequestParam(value = "age",required = false,defaultValue = "0")long age,
                                         @RequestParam(value = "clz",required = false,defaultValue = "clz1")String clz){
         Student01 student01 = new Student01(age,name,clz);
+
+        //返回json中携带原始请求信息。
         student01.add(linkTo(methodOn(HelloController.class).testhateoas(name,age,clz)).withSelfRel());
         //return new ResponseEntity<>(student01, HttpStatus.OK);
         return student01;
     }
+
+    @ResponseBody
+    @RequestMapping("/greeting-javaconfig")
+    //@GetMapping("/greeting")
+    public Student01 testhateoas3(@RequestParam(value = "name",required = false,defaultValue = "name1") String name,
+                                        @RequestParam(value = "age",required = false,defaultValue = "0")long age,
+                                        @RequestParam(value = "clz",required = false,defaultValue = "clz1")String clz){
+        Student01 student01 = new Student01(age,name,clz);
+
+        //返回json中携带原始请求信息。
+        student01.add(linkTo(methodOn(HelloController.class).testhateoas3(name,age,clz)).withSelfRel());
+        //return new ResponseEntity<>(student01, HttpStatus.OK);
+        return student01;
+    }
+
     @ResponseBody
     @RequestMapping("/greeting2")
     //@GetMapping("/greeting")

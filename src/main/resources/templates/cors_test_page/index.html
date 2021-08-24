@@ -1,0 +1,30 @@
+<html>
+<head>this is head</head>
+<body>
+
+demo地址： https://spring.io/guides/gs/rest-service-cors/
+当前服务器为8080端口。 现使用ajax访问8081端口。
+global  ： http://localhost:8081/greeting-javaconfig
+
+
+ not global: http://localhost:8081/greeting
+
+
+<button  onclick = "sss()">点击</button>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
+<script>
+function sss() {
+    $.ajax({
+        url: "http://localhost:8081/greeting-javaconfig"
+    }).then(function(data, status, jqxhr) {
+       console.log(data);
+       console.log(status);
+       console.log(jqxhr);
+    });
+	console.log('onload ');
+}
+</script>
+
+</body>
+</html>
