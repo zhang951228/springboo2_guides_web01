@@ -7,11 +7,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.HtmlUtils;
 
 import java.sql.Wrapper;
 import java.util.List;
@@ -35,6 +37,20 @@ public class UserController {
         return users;
     }
 
+    @Async
+    @GetMapping("/hello1")
+    public String seHello(@RequestParam(value = "name1",defaultValue = "World") String name, String password){
+        String logStr = String.format("调用seHello, 传入参数  %s!   %s!",name,password);
+        System.out.println(logStr);
+
+        try {
+            Thread.sleep(10000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(logStr);
+        return  logStr;
+    }
 
     @GetMapping("/findAll")
     public List<User> findAll(){
@@ -46,7 +62,7 @@ public class UserController {
     @GetMapping("/find")
     public User findAll2(@RequestParam (value = "account",defaultValue = "")String account){
         User user = userService.getUserByUserName(account);
-        log.info("调用 findAll2 ");
+        log.info( HtmlUtils.htmlEscape("调用 findAll2 "));
         return user;
     }
 

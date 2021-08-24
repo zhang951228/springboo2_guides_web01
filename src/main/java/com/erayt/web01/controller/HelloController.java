@@ -1,6 +1,8 @@
 package com.erayt.web01.controller;
 
 import com.erayt.web01.domain.*;
+import com.erayt.web01.domain.message.Greeting;
+import com.erayt.web01.domain.message.HelloMessage;
 import com.erayt.web01.repository.CustomerRepository;
 import com.erayt.web01.repository.PersonRepository;
 import org.springframework.batch.core.*;
@@ -17,11 +19,15 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jms.core.JmsTemplate;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.util.HtmlUtils;
+
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import static java.util.Arrays.asList;
 import static java.util.stream.StreamSupport.stream;
@@ -47,6 +53,7 @@ public class HelloController implements WebMvcConfigurer {
     @Autowired
     private JmsTemplate jmsTemplate;
 
+    @ResponseBody
     @GetMapping("/hello1")
     public String seHello(@RequestParam(value = "name1",defaultValue = "World") String name, String password){
         String logStr = String.format("调用seHello, 传入参数  %s!   %s!",name,password);
@@ -284,5 +291,11 @@ public class HelloController implements WebMvcConfigurer {
     }
 
 
+    @MessageMapping("/websocket/hello")
+    @SendTo("/topic/greetings")
+    public Greeting greeting(HelloMessage message) throws Exception{
+        Thread.sleep(5000L);
+        return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
+    }
 
 }

@@ -23,7 +23,10 @@ import org.springframework.data.gemfire.config.annotation.EnableEntityDefinedReg
 import org.springframework.data.gemfire.repository.config.EnableGemfireRepositories;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.jms.annotation.EnableJms;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
+
 import static java.util.Arrays.asList;
 import static java.util.stream.StreamSupport.stream;
 
