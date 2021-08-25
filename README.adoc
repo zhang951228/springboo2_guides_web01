@@ -25,4 +25,4 @@ docker run --name  my-mongo  -p 27017:27017  -d mongo
 
 待解决项：
 activeMQ 集成 webSocket
-token 与jquery 与 前后端分离/跨域。
+springboot 集成 spring WS ： https://spring.io/guides/gs/producing-web-service/  妈的第一次集成居然失败了。

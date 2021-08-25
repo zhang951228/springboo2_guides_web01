@@ -6,7 +6,8 @@ server:
 spring:
   shardingsphere:
     datasource:
-      names: master, slave0, slave1, slave2
+      names: master, slave0, slave1
+#      names: master, slave0, slave1, slave2
 #基础链接
       common:
         type: com.zaxxer.hikari.HikariDataSource
