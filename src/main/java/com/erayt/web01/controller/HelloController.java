@@ -5,6 +5,8 @@ import com.erayt.web01.domain.message.Greeting;
 import com.erayt.web01.domain.message.HelloMessage;
 import com.erayt.web01.repository.CustomerRepository;
 import com.erayt.web01.repository.PersonRepository;
+import com.erayt.web01.repository.StudentRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.*;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
@@ -44,6 +46,7 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 //@RestController
 @Controller
+@Slf4j
 public class HelloController implements WebMvcConfigurer {
 
     @Autowired
@@ -314,6 +317,22 @@ public class HelloController implements WebMvcConfigurer {
     public Greeting greeting(HelloMessage message) throws Exception{
         Thread.sleep(5000L);
         return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
+    }
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @ResponseBody
+    @GetMapping("/student")
+    public String findStudentById(){
+        log.info(" start findStudentById method ");
+        log.info( "1: " + studentRepository.findStudentById(1L));
+        log.info( "2: " + studentRepository.findStudentById(2L));
+        log.info( "3: " + studentRepository.findStudentById(3L));
+        log.info( "4: " + studentRepository.findStudentById(4L));
+        log.info( "5: " + studentRepository.findStudentById(5L));
+
+        return studentRepository.findStudentById(1L).toString();
     }
 
 }
