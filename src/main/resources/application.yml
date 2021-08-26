@@ -1,12 +1,12 @@
 server:
-  port: 8081
+  port: 8082
   servlet:
     session:
       timeout: 1s
 spring:
   shardingsphere:
     datasource:
-      names: master, slave0, slave1
+      names: master, slave0
 #      names: master, slave0, slave1, slave2
 #基础链接
       common:
@@ -28,18 +28,6 @@ spring:
         jdbcUrl: jdbc:mysql://106.12.95.66:3307/item01?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
         username: root
         password: pbszcjdgb
-      slave1:
-        type: com.zaxxer.hikari.HikariDataSource
-        driverClassName: com.mysql.cj.jdbc.Driver
-        jdbcUrl: jdbc:mysql://106.12.95.66:3307/item02?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
-        username: root
-        password: pbszcjdgb
-      slave2:
-        type: com.zaxxer.hikari.HikariDataSource
-        driverClassName: com.mysql.cj.jdbc.Driver
-        jdbcUrl: jdbc:mysql://106.12.95.66:3307/item03?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
-        username: root
-        password: pbszcjdgb
     rules:
       replica-query:
         dataSources:
@@ -47,7 +35,8 @@ spring:
 #主数据源配置
             primaryDataSourceName: master
 #从数据源配置
-            replicaDataSourceNames: slave0, slave1, slave2
+            replicaDataSourceNames: slave0
+#            replicaDataSourceNames: slave0, slave1, slave2
 #负载均衡算法名称
             loadBalancerName: roundrobin
         loadBalancers:
@@ -75,6 +64,13 @@ spring:
   data:
     mongodb:
       uri: mongodb://106.12.95.66/test
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+  application:
+    name: myweb01
 
 #mybatis:
 #  mapper-locations: classpath:/mapper/*.xml
@@ -82,3 +78,7 @@ mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8090/eureka/

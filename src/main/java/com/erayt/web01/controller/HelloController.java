@@ -58,7 +58,7 @@ public class HelloController implements WebMvcConfigurer {
 
     @ResponseBody
     @GetMapping("/hello1")
-    public String seHello(@RequestParam(value = "name1",defaultValue = "World") String name, String password){
+    public String seHello(@RequestParam(value = "name1",defaultValue = "World234") String name, String password){
         String logStr = String.format("调用seHello, 传入参数  %s!   %s!",name,password);
         System.out.println(logStr);
         return  logStr;
@@ -92,7 +92,7 @@ public class HelloController implements WebMvcConfigurer {
         return "hello";
     }
 
-    @GetMapping("/")
+    //@GetMapping("/")
     public String hello2(){
         return "hello";
     }
@@ -111,7 +111,7 @@ public class HelloController implements WebMvcConfigurer {
         return "login";
     }
 
-    @PostMapping("/")
+    //@PostMapping("/")
     public String checkPersonInfo(@Valid PersonForm personForm, BindingResult bindingResult) {
         System.out.println(personForm);
         if (bindingResult.hasErrors()) {

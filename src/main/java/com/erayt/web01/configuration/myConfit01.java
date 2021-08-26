@@ -1,6 +1,8 @@
 package com.erayt.web01.configuration;
 
+import com.erayt.web01.domain.Person03;
 import com.erayt.web01.domain.Quote;
+import com.erayt.web01.repository.Person03Repository02;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -87,4 +89,37 @@ public class myConfit01 {
         return converter;
     }
 
+    @Bean
+    public CommandLineRunner loadDatas(Person03Repository02 person03Repository02){
+        return args -> {
+            person03Repository02.save(new Person03("Jack", "Bauer"));
+            person03Repository02.save(new Person03("Chloe", "O'Brian"));
+            person03Repository02.save(new Person03("Kim", "Bauer"));
+            person03Repository02.save(new Person03("David", "Palmer"));
+            person03Repository02.save(new Person03("Michelle", "Dessler"));
+
+            // fetch all customers
+            log.info("Customers found with findAll():");
+            log.info("-------------------------------");
+            for (Person03 customer : person03Repository02.findAll()) {
+                log.info(customer.toString());
+            }
+            log.info("");
+
+            // fetch an individual customer by ID
+            Person03 customer = person03Repository02.findById(1L).get();
+            log.info("Customer found with findOne(1L):");
+            log.info("--------------------------------");
+            log.info(customer.toString());
+            log.info("");
+
+            // fetch customers by last name
+            log.info("Customer found with findByLastNameStartsWithIgnoreCase('Bauer'):");
+            log.info("--------------------------------------------");
+            for (Person03 bauer : person03Repository02
+                .findByLastNameStartsWithIgnoreCase("Bauer")) {
+                log.info(bauer.toString());
+            }
+            log.info("");};
+    }
 }

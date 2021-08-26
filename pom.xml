@@ -15,6 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
+        <spring-cloud.version>2020.0.3</spring-cloud.version>
 	</properties>
 	<dependencies>
         <!-- @Description:   https://spring.io/guides/gs/batch-processing/ @Author z151   @Date 2021/8/17 18:37  -->
@@ -276,6 +277,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cache</artifactId>
 		</dependency>
+        <!-- tag::starter[] -->
+        <dependency>
+				<groupId>com.vaadin</groupId>
+				<artifactId>vaadin-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+        <!-- end::starter[] -->
         <dependency>
           <groupId>org.springframework.security</groupId>
           <artifactId>spring-security-test</artifactId>
@@ -283,6 +294,26 @@
         </dependency>
 	</dependencies>
 
+    <!-- tag::bom[] -->
+    <dependencyManagement>
+			<dependencies>
+					<dependency>
+							<groupId>com.vaadin</groupId>
+							<artifactId>vaadin-bom</artifactId>
+							<version>20.0.7</version>
+							<type>pom</type>
+							<scope>import</scope>
+					</dependency>
+                    <dependency>
+                        <groupId>org.springframework.cloud</groupId>
+                        <artifactId>spring-cloud-dependencies</artifactId>
+                        <version>${spring-cloud.version}</version>
+                        <type>pom</type>
+                        <scope>import</scope>
+                    </dependency>
+			</dependencies>
+	</dependencyManagement>
+    <!-- end::bom[] -->
 	<build>
 		<plugins>
 			<plugin>

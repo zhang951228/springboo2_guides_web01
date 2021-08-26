@@ -22,7 +22,11 @@ docker run -itd --name mysqlmsater01 --network mysql-network -p 3306:3306 -e MYS
 docker run -itd --name mysqlslave04  --network mysql-network -p 3307:3306 -e MYSQL_ROOT_PASSWORD=p...b(全字母) mysql
 
 docker run --name  my-mongo  -p 27017:27017  -d mongo
+docker build -t spring/boot .
 
+docker run --name  myspringboot  -p 8081:8081  -d 44591fdd8533
 待解决项：
 activeMQ 集成 webSocket
 springboot 集成 spring WS ： https://spring.io/guides/gs/producing-web-service/  妈的第一次集成居然失败了。
+https://spring.io/guides/gs/sts-cloud-foundry-deployment/  Deploying to Cloud Foundry from STS 好像用不到。不会
+https://spring.io/guides/gs/crud-with-vaadin/ 妈的不会，使用java语言写页面？感觉不如thymeleaf哇。为什么要出现在demo中？？？

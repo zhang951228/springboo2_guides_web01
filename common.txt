@@ -16,7 +16,7 @@ master中赋值权限
 GRANT REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'slave'@'%';
 
 参考网站：https://www.cnblogs.com/songwenjie/p/9371422.html
-change master to master_host='172.18.0.2', master_user='slave', master_password='123456', master_port=3306, master_log_file='mysql-bin.000002', master_log_pos= 156, master_connect_retry=30;
+change master to master_host='172.18.0.2', master_user='slave', master_password='123456', master_port=3306, master_log_file='mysql-bin.000002', master_log_pos= 16928, master_connect_retry=30;
 
 命令说明：
 

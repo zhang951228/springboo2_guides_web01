@@ -39,7 +39,7 @@ public class UserController {
 
     @Async
     @GetMapping("/hello1")
-    public String seHello(@RequestParam(value = "name1",defaultValue = "World") String name, String password){
+    public String seHello(@RequestParam(value = "name1",defaultValue = "World123") String name, String password){
         String logStr = String.format("调用seHello, 传入参数  %s!   %s!",name,password);
         System.out.println(logStr);
 

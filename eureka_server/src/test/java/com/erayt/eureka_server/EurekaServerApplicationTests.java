@@ -1,10 +1,10 @@
-package com.erayt.web04;
+package com.erayt.eureka_server;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Web04ApplicationTests {
+class EurekaServerApplicationTests {
 
     @Test
     void contextLoads() {
