@@ -30,3 +30,7 @@ activeMQ 集成 webSocket
 springboot 集成 spring WS ： https://spring.io/guides/gs/producing-web-service/  妈的第一次集成居然失败了。
 https://spring.io/guides/gs/sts-cloud-foundry-deployment/  Deploying to Cloud Foundry from STS 好像用不到。不会
 https://spring.io/guides/gs/crud-with-vaadin/ 妈的不会，使用java语言写页面？感觉不如thymeleaf哇。为什么要出现在demo中？？？
+spring cloud config
+zuul
+链接反应式操作符
+ Spring Cloud Vault  guides中使用了两个篇幅来渐进介绍这个功能，说明他很重要，

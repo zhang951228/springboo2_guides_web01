@@ -1,4 +1,5 @@
 package com.erayt.web01.controller;
+/*
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -20,4 +21,5 @@ class ServiceInstanceRestController {
 			@PathVariable String applicationName) {
 		return this.discoveryClient.getInstances(applicationName);
 	}
-}
+}*/
+class ServiceInstanceRestController {}

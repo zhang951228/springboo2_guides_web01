@@ -61,7 +61,7 @@ public class HelloController implements WebMvcConfigurer {
     public String seHello(@RequestParam(value = "name1",defaultValue = "World234") String name, String password){
         String logStr = String.format("调用seHello, 传入参数  %s!   %s!",name,password);
         System.out.println(logStr);
-        return  logStr;
+        return  "Hello, World311";
     }
 
 
