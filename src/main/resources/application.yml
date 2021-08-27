@@ -10,22 +10,22 @@ spring:
 #      names: master, slave0, slave1, slave2
 #基础链接
       common:
-        type: com.zaxxer.hikari.HikariDataSource
+        type: com.alibaba.druid.pool.DruidDataSource
         driverClassName: com.mysql.cj.jdbc.Driver
-        jdbcUrl: jdbc:mysql://106.12.95.66:3306/item01?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
+        url: jdbc:mysql://106.12.95.66:3306/item01?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
         username: root
         password: ENC(+m5eKQ4r+5DJLlJjNCZAsIXxiA1qXvcNy2gm6SDUm1S0b+7osynnrxds0+O6zZFJ)
 #主 从 库配置
       master:
-        type: com.zaxxer.hikari.HikariDataSource
+        type: com.alibaba.druid.pool.DruidDataSource
         driverClassName: com.mysql.cj.jdbc.Driver
-        jdbcUrl: jdbc:mysql://106.12.95.66:3306/item01?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
+        url: jdbc:mysql://106.12.95.66:3306/item01?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
         username: root
         password: ENC(+m5eKQ4r+5DJLlJjNCZAsIXxiA1qXvcNy2gm6SDUm1S0b+7osynnrxds0+O6zZFJ)
       slave0:
-        type: com.zaxxer.hikari.HikariDataSource
+        type: com.alibaba.druid.pool.DruidDataSource
         driverClassName: com.mysql.cj.jdbc.Driver
-        jdbcUrl: jdbc:mysql://106.12.95.66:3307/item01?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
+        url: jdbc:mysql://106.12.95.66:3307/item01?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
         username: root
         password: ENC(+m5eKQ4r+5DJLlJjNCZAsIXxiA1qXvcNy2gm6SDUm1S0b+7osynnrxds0+O6zZFJ)
     rules:
