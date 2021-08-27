@@ -8,7 +8,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://106.12.95.66:3306/item01?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
     username: root
-    password: pbszcjdgb
+    password: ENC(+m5eKQ4r+5DJLlJjNCZAsIXxiA1qXvcNy2gm6SDUm1S0b+7osynnrxds0+O6zZFJ)
 
   redis:
     host: 106.12.95.66
@@ -37,7 +37,7 @@ spring:
         driver-class-name: com.mysql.cj.jdbc.Driver
         jdbc-url: jdbc:mysql://106.12.95.66:3306/item01?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
         username: root
-        password: pbszcjdgb
+        password: ENC(+m5eKQ4r+5DJLlJjNCZAsIXxiA1qXvcNy2gm6SDUm1S0b+7osynnrxds0+O6zZFJ)
         initialSize: 5
         minIdle: 5
         maxActive: 20
@@ -47,7 +47,7 @@ spring:
         driver-class-name: com.mysql.cj.jdbc.Driver
         jdbc-url: jdbc:mysql://106.12.95.66:3306/item01?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&allowMultiQueries=true
         username: root
-        password: pbszcjdgb
+        password: ENC(+m5eKQ4r+5DJLlJjNCZAsIXxiA1qXvcNy2gm6SDUm1S0b+7osynnrxds0+O6zZFJ)
         initialSize: 5
         minIdle: 5
         maxActive: 20
